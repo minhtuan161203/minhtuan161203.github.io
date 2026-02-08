@@ -6,94 +6,299 @@
   <title>Tuan Dang Ha Minh | Control & Automation Engineer</title>
 
   <style>
+    :root{
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --text: #222;
+      --muted: #5b6472;
+      --muted2: #7b8696;
+      --primary: #1f3c88;
+      --primary2:#4f8cff;
+      --line: #e9eef5;
+      --shadow: 0 10px 28px rgba(0,0,0,0.10);
+      --shadow2: 0 4px 12px rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: "Segoe UI", Arial, sans-serif;
       margin: 0;
-      background: #f4f6f8;
-      color: #333;
-      line-height: 1.6;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(79,140,255,0.18), transparent 55%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(31,60,136,0.14), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      animation: pageIn 0.75s ease both;
+    }
+
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 40px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      max-width: 920px;
+      margin: 44px auto;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(6px);
+      padding: 44px 44px 36px;
+      box-shadow: var(--shadow2);
+      border: 1px solid rgba(233,238,245,0.9);
+      border-radius: var(--radius);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    h1 {
-      margin-bottom: 5px;
-      color: #1f3c88;
+    .container::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: linear-gradient(120deg, rgba(79,140,255,0.18), rgba(31,60,136,0.16), transparent 55%);
+      filter: blur(24px);
+      z-index:0;
+      pointer-events:none;
     }
 
-    h2 {
-      margin-top: 35px;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 5px;
-      color: #1f3c88;
+    .container > * { position: relative; z-index: 1; }
+
+    .container:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
     }
 
-    .subtitle {
-      font-size: 1.1rem;
-      color: #555;
-    }
-
-    .contact a {
-      color: #1f3c88;
-      text-decoration: none;
-    }
-
-    .contact a:hover {
-      text-decoration: underline;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .job {
+    .top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
       margin-bottom: 20px;
     }
 
+    h1 {
+      margin: 0 0 4px 0;
+      color: var(--primary);
+      font-size: 2.35rem;
+      letter-spacing: 0.2px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 1.06rem;
+      color: var(--muted);
+    }
+
+    .contact {
+      margin: 10px 0 0;
+      color: var(--muted);
+      display: grid;
+      gap: 6px;
+      font-size: 0.98rem;
+    }
+
+    .contact a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+
+    .contact a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--primary2));
+      transition: width 0.28s ease;
+      border-radius: 2px;
+    }
+
+    .contact a:hover::after { width: 100%; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      font-size: 0.86rem;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #f1f6ff;
+      border: 1px solid rgba(79,140,255,0.22);
+      color: #27407f;
+      transition: transform 0.2s ease, background 0.2s ease;
+      user-select: none;
+    }
+
+    .chip:hover { transform: translateY(-2px); background: #eaf2ff; }
+
+    h2 {
+      margin-top: 32px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      color: var(--primary);
+      font-size: 1.35rem;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: all 0.6s ease;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 64px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--primary2));
+      border-radius: 2px;
+    }
+
+    p { margin: 0 0 10px 0; color: #2a2f3a; }
+
+    .section-note { color: var(--muted); margin-top: -6px; }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    ul li {
+      color: #2a2f3a;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--primary);
+      font-size: 0.92rem;
+      transform: translateY(2px);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 820px){
+      .container { padding: 28px 18px 22px; margin: 18px auto; border-radius: 14px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      h1 { font-size: 2.0rem; }
+    }
+
+    .job {
+      margin: 14px 0 0;
+      background: rgba(249,250,252,0.9);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--primary);
+      padding: 18px 18px;
+      border-radius: 12px;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .job:hover {
+      background: #ffffff;
+      transform: translateX(6px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    }
+
+    .job-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
     .job-title {
-      font-weight: bold;
-      color: #222;
+      font-weight: 800;
+      color: #1e2330;
+      font-size: 1.06rem;
+      margin: 0;
     }
 
     .job-company {
-      color: #555;
+      color: var(--muted);
       font-style: italic;
+      font-weight: 600;
+      margin: 0;
     }
 
     .date {
-      font-size: 0.9rem;
-      color: #777;
+      font-size: 0.92rem;
+      color: var(--muted2);
+      white-space: nowrap;
+    }
+
+    .job ul { margin-top: 6px; }
+
+    .show {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition: all 0.6s ease;
     }
 
     footer {
-      margin-top: 40px;
+      margin-top: 34px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
       text-align: center;
-      font-size: 0.9rem;
-      color: #777;
+      font-size: 0.92rem;
+      color: var(--muted2);
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>Tuan Dang Ha Minh</h1>
-    <p class="subtitle">
-      Control Engineering & Automation Student <br/>
-      Ho Chi Minh City University of Technology (HCMUT) – Graduation 2026
-    </p>
+    <header class="top">
+      <div>
+        <h1>Tuan Dang Ha Minh</h1>
+        <p class="subtitle">
+          Control Engineering & Automation Student <br/>
+          Ho Chi Minh City University of Technology (HCMUT) – Graduation 2026
+        </p>
+      </div>
 
-    <p class="contact">
-      📍 Ho Chi Minh City, Vietnam <br/>
-      📧 <a href="mailto:minhtuan161203@gmail.com">minhtuan161203@gmail.com</a> <br/>
-      🔗 <a href="https://www.linkedin.com/in/minhtuan1603" target="_blank">LinkedIn Profile</a> <br/>
-      💻 <a href="https://github.com/minhtuan161203" target="_blank">GitHub</a>
-    </p>
+      <div class="contact">
+        <div>📍 Ho Chi Minh City, Vietnam</div>
+        <div>📧 <a href="mailto:minhtuan161203@gmail.com">minhtuan161203@gmail.com</a></div>
+        <div>🔗 <a href="https://www.linkedin.com/in/minhtuan1603" target="_blank" rel="noopener">LinkedIn Profile</a></div>
+        <div>💻 <a href="https://github.com/minhtuan161203" target="_blank" rel="noopener">GitHub</a></div>
+
+        <div class="chips" aria-label="quick highlights">
+          <span class="chip">PLC / HMI</span>
+          <span class="chip">STM32</span>
+          <span class="chip">PMSM + FOC</span>
+          <span class="chip">Python Automation</span>
+          <span class="chip">PCIe/CXL Validation</span>
+        </div>
+      </div>
+    </header>
 
     <h2>About Me</h2>
     <p>
@@ -105,21 +310,29 @@
     </p>
 
     <h2>Technical Skills</h2>
-    <ul>
-      <li>Control & Automation: PLC, HMI, Industrial Automation Systems</li>
-      <li>Embedded Systems: STM32, Motor Control, PMSM, FOC</li>
-      <li>Programming: Python, C/C++, MATLAB</li>
-      <li>Electronics: PCB Design, Circuit Debugging, Power Electronics</li>
-      <li>Tools: Git, GitHub, Linux, Altium Designer, MATLAB/Simulink</li>
-      <li>Communication Protocols: UART, I2C, SPI</li>
-    </ul>
+    <div class="grid-2">
+      <ul>
+        <li><strong>Control & Automation:</strong> PLC, HMI, Industrial Automation Systems</li>
+        <li><strong>Embedded Systems:</strong> STM32, Motor Control, PMSM, FOC</li>
+        <li><strong>Programming:</strong> Python, C/C++, MATLAB</li>
+      </ul>
+      <ul>
+        <li><strong>Electronics:</strong> PCB Design, Circuit Debugging, Power Electronics</li>
+        <li><strong>Tools:</strong> Git, GitHub, Linux, Altium Designer, MATLAB/Simulink</li>
+        <li><strong>Comms:</strong> UART, I2C, SPI</li>
+      </ul>
+    </div>
 
     <h2>Experience</h2>
 
     <div class="job">
-      <p class="job-title">Validation Intern</p>
-      <p class="job-company">Marvell Technology</p>
-      <p class="date">Jun 2025 – Present</p>
+      <div class="job-head">
+        <div>
+          <p class="job-title">Validation Intern</p>
+          <p class="job-company">Marvell Technology</p>
+        </div>
+        <div class="date">Jun 2025 – Present</div>
+      </div>
       <ul>
         <li>Enhanced PCIe/CXL validation automation systems, reducing troubleshooting time by 30%.</li>
         <li>Developed Python scripts to access PCIe registers via in-band control.</li>
@@ -129,9 +342,13 @@
     </div>
 
     <div class="job">
-      <p class="job-title">Thesis Student</p>
-      <p class="job-company">VAS Corporation</p>
-      <p class="date">Aug 2024 – Present</p>
+      <div class="job-head">
+        <div>
+          <p class="job-title">Thesis Student</p>
+          <p class="job-company">VAS Corporation</p>
+        </div>
+        <div class="date">Aug 2024 – Present</div>
+      </div>
       <ul>
         <li>Designed and implemented Field-Oriented Control (FOC) for PMSM motors.</li>
         <li>Simulated control algorithms using MATLAB/Simulink.</li>
@@ -141,9 +358,13 @@
     </div>
 
     <div class="job">
-      <p class="job-title">Electronic Intern</p>
-      <p class="job-company">VIAM Lab</p>
-      <p class="date">Dec 2023 – Apr 2024</p>
+      <div class="job-head">
+        <div>
+          <p class="job-title">Electronic Intern</p>
+          <p class="job-company">VIAM Lab</p>
+        </div>
+        <div class="date">Dec 2023 – Apr 2024</div>
+      </div>
       <ul>
         <li>Designed and assembled analog and digital circuits.</li>
         <li>Created PCB layouts using Altium Designer.</li>
@@ -170,5 +391,16 @@
       © 2026 Tuan Dang Ha Minh | Control & Automation Engineer
     </footer>
   </div>
+
+  <script>
+    // Reveal on scroll (Intersection Observer)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll("h2, .job").forEach((el) => observer.observe(el));
+  </script>
 </body>
 </html>
